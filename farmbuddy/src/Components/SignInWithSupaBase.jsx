@@ -12,6 +12,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { SupaBase } from './createClient'
 import Swal from 'sweetalert2'
 
 const theme = createTheme()
@@ -28,7 +29,29 @@ export default function SignInSide() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    
+    const { data, error } = await SupaBase.auth.signInWithPassword({
+      email: details.email,
+      password: details.password,
+    })
+    console.error(error)
+    if (data) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Yayy...',
+        text: 'Successfully Signed In!',
+        timer: '2000',
+      })
+      navigate('/consumer')
+    }
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="${url}">Why do I have this issue?</a>',
+        timer: '4000',
+      })
+    }
   }
 
   const handleChange = (event) => {
@@ -86,6 +109,7 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={details.email}
                 onChange={handleChange}
               />
               <TextField
@@ -97,6 +121,7 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={details.password}
                 onChange={handleChange}
               />
               <FormControlLabel

@@ -1,6 +1,6 @@
 //eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -21,7 +21,6 @@ import { SupaBase } from './createClient'
 const theme = createTheme()
 
 export default function SignUpSide() {
-
   // eslint-disable-next-line no-unused-vars
   const initialStateErrors = {
     email: { required: false },
@@ -36,28 +35,29 @@ export default function SignUpSide() {
   const handleSubmit = async () => {
     const name = input.firstName + input.lastName
 
-    const {data, error } = await SupaBase.auth.signUp({
-        displayName: name,
-        email: input.email,
-        password: input.password,
-        })
+    const { data, error } = await SupaBase.auth.signUp({
+      displayName: name,
+      email: input.email,
+      password: input.password,
+      redirectTo: 'http://localhost:5173/signin',
+    })
 
-    if(data){
-        Swal.fire({
-            icon: 'success',
-            title: 'Yayy...',
-            text: 'Successfully Signed Up! Please verify your email and login to continue.',
-            timer: '2000',
-        })
+    if (data) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Yayy...',
+        text: 'Successfully Signed Up! Please verify your email and login to continue.',
+        timer: '2000',
+      })
     }
-    if(error){
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-            footer: '<a href="${url}">Why do I have this issue?</a>',
-            timer: '4000',
-        })
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="${url}">Why do I have this issue?</a>',
+        timer: '4000',
+      })
     }
   }
 
