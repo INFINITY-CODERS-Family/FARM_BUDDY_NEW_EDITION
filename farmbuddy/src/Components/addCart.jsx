@@ -13,6 +13,7 @@ import {Link} from 'react-router-dom';
 import "../Styles/addCart.css";
 import Swal from "sweetalert2";
 import Navbar from "./navbar";
+import PropTypes from 'prop-types';
 
 const AddCart = ({ cart, setCart, handleChange }) => {
   const [price, setPrice] = useState(1);
@@ -77,6 +78,7 @@ const AddCart = ({ cart, setCart, handleChange }) => {
               {cart.map((ele) => {
                 return (
                   <Card
+                    key={ele.id}
                     sx={{
                       maxWidth: 300,
                       marginBlock: 1,
@@ -161,5 +163,10 @@ const AddCart = ({ cart, setCart, handleChange }) => {
   );
 };
 
-export default AddCart;
+AddCart.propTypes = {
+  cart: PropTypes.array.isRequired,
+  setCart: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+}
 
+export default AddCart;

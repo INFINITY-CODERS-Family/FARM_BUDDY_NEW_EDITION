@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import Home from './Components/home'
 import Services from './Components/services'
@@ -5,7 +6,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import Navbar from './Components/navbar'
 import Consumer from './Components/consumer'
 import About from './Components/about'
-import SignInSide from './Components/SigninSide'
+import SignInSide from './Components/SignInWithSupaBase'
 import SignUpSide from './Components/SignUpWithSupaBase'
 import Payment from './Components/payment'
 import Grains from './Components/grains'
@@ -103,7 +104,7 @@ const App = () => {
         },
         {
           path: '/mycart',
-          element: <AddCart cart={cart} handleChange={handleChange} />,
+          element: <AddCart cart={cart} setCart={setCart} handleChange={handleChange} />,
         },
         {
           path: '/farmer',
@@ -114,11 +115,9 @@ const App = () => {
   ])
 
   return (
-    <React.Fragment>
       <RouterProvider router={router}>
         <Outlet />
       </RouterProvider>
-    </React.Fragment>
   )
 }
 

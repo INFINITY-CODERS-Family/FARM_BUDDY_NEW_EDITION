@@ -21,17 +21,17 @@ import { SupaBase } from './createClient'
 const theme = createTheme()
 
 export default function SignUpSide() {
-  const nav = useNavigate()
 
+  // eslint-disable-next-line no-unused-vars
   const initialStateErrors = {
     email: { required: false },
     password: { required: false },
     firstName: { required: false },
   }
 
-  const eventLog = () => {
-    nav('/signin')
-  }
+  // const eventLog = () => {
+  //   nav('/signin')
+  // }
 
   const handleSubmit = async () => {
     const name = input.firstName + input.lastName
@@ -48,6 +48,15 @@ export default function SignUpSide() {
             title: 'Yayy...',
             text: 'Successfully Signed Up! Please verify your email and login to continue.',
             timer: '2000',
+        })
+    }
+    if(error){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="${url}">Why do I have this issue?</a>',
+            timer: '4000',
         })
     }
   }
