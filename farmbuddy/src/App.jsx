@@ -1,117 +1,117 @@
-import React, { useState, useEffect } from 'react'
-import Home from './Components/home'
-import Services from './Components/services'
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
-import Navbar from './Components/navbar'
-import Consumer from './Components/consumer'
-import About from './Components/about'
-import SignInSide from './Components/SigninSide'
-import SignUpSide from './Components/SignUpSide'
-import Payment from './Components/payment'
-import Grains from './Components/grains'
-import Vegetables from './Components/vegetable'
-import Fruits from './Components/fruits'
-import Spices from './Components/spices'
-import Nuts from './Components/nuts'
-import AddCart from './Components/addCart'
-import Weather from './Components/weather'
-import Farmer from './Components/farmer'
+import React, { useState, useEffect } from "react";
+import Home from "./Components/home";
+import Services from "./Components/services";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import Navbar from "./Components/navbar";
+import Consumer from "./Components/consumer";
+import About from "./Components/about";
+import SignInSide from "./Components/SignInWithSupaBase";
+import SignUpSide from "./Components/SignUpSide";
+import Payment from "./Components/payment";
+import Grains from "./Components/grains";
+import Vegetables from "./Components/vegetable";
+import Fruits from "./Components/fruits";
+import Spices from "./Components/spices";
+import Nuts from "./Components/nuts";
+import AddCart from "./Components/addCart";
+import Weather from "./Components/weather";
+import Farmer from "./Components/farmer";
 
 const App = () => {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([]);
   const handleClick = (item) => {
-    if (cart.indexOf(item) !== -1) return
-    setCart([...cart, item])
-    console.log(cart)
-  }
-  
+    if (cart.indexOf(item) !== -1) return;
+    setCart([...cart, item]);
+    console.log(cart);
+  };
+
   const handleChange = (item, d) => {
-    const ind = cart.indexOf(item)
-    const arr = cart
-    arr[ind].amount += d
-    if (arr[ind].amount === 0) arr[ind].amount = 1
-    console.log(arr[ind].amount)
-    setCart([...arr])
-  }
-  
+    const ind = cart.indexOf(item);
+    const arr = cart;
+    arr[ind].amount += d;
+    if (arr[ind].amount === 0) arr[ind].amount = 1;
+    console.log(arr[ind].amount);
+    setCart([...arr]);
+  };
+
   useEffect(() => {
-    console.log('cart change')
-  }, [cart])
+    console.log("cart change");
+  }, [cart]);
 
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: "/",
       element: (
         <>
           <Navbar />
           <Outlet />
         </>
       ),
-      
+
       children: [
         {
-          path: '/',
+          path: "/",
           element: <Home />,
         },
         {
-          path: '/consumer',
+          path: "/consumer",
           element: <Consumer />,
         },
         {
-          path: '/about',
+          path: "/about",
           element: <About />,
         },
         {
-          path: '/weather',
+          path: "/weather",
           element: <Weather />,
         },
         {
-          path: '/signin',
+          path: "/signin",
           element: <SignInSide />,
         },
         {
-          path: '/signup',
+          path: "/signup",
           element: <SignUpSide />,
         },
         {
-          path: '/services',
+          path: "/services",
           element: <Services />,
         },
         {
-          path: '/payment',
+          path: "/payment",
           element: <Payment />,
         },
         {
-          path: '/grains',
+          path: "/grains",
           element: <Grains handleClick={handleClick} />,
         },
         {
-          path: '/vegetables',
+          path: "/vegetables",
           element: <Vegetables handleClick={handleClick} />,
         },
         {
-          path: '/fruits',
+          path: "/fruits",
           element: <Fruits handleClick={handleClick} />,
         },
         {
-          path: '/spices',
+          path: "/spices",
           element: <Spices handleClick={handleClick} />,
         },
         {
-          path: '/nuts',
+          path: "/nuts",
           element: <Nuts handleClick={handleClick} />,
         },
         {
-          path: '/mycart',
+          path: "/mycart",
           element: <AddCart cart={cart} handleChange={handleChange} />,
         },
         {
-          path: '/farmer',
+          path: "/farmer",
           element: <Farmer />,
         },
       ],
     },
-  ])
+  ]);
 
   return (
     <React.Fragment>
@@ -119,54 +119,54 @@ const App = () => {
         <Outlet />
       </RouterProvider>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
-  // const App = () => {
-  
-  //   const [cart, setCart] = useState([]);
-  
-  //   const handleClick = (item) => {
-  //     if (cart.indexOf(item) !== -1) return;
-  //     setCart([...cart, item]);
-  //     console.log(cart);
-  //   };
-  
-  //   const handleChange = (item, d) => {
-  //     const ind = cart.indexOf(item);
-  //     const arr = cart;
-  //     arr[ind].amount += d;
-  //     if (arr[ind].amount === 0) arr[ind].amount = 1;
-  //     console.log(arr[ind].amount);
-  //     setCart([...arr]);
-  //   };
-  
-  //   useEffect(() => {
-  //     console.log("cart change");
-  //   }, [cart]);
-  
-  //   return (
-  //     <div>
-  //       <Navbar />
-  //       <Routes>
-  //         <Route path="/" element={<Home />}></Route>
-  //         <Route path="/grains" element={<Grains handleClick={handleClick} />}></Route>
-  //         <Route path="/vegetables" element={<Vegetables handleClick={handleClick} />}></Route>
-  //         <Route path="/fruits" element={<Fruits handleClick={handleClick} />}></Route>
-  //         <Route path="/spices" element={<Spices handleClick={handleClick} />}></Route>
-  //         <Route path="/nuts" element={<Nuts handleClick={handleClick} />}></Route>
-  //         <Route path="/mycart" element={<AddCart cart={cart} setCart={setCart} handleChange={handleChange}/>}></Route>
-  //         <Route path="/about" element={<About />}></Route>
-  //         <Route path='/consumer' element={<Consumer />}></Route>
-  //         <Route path='/signin' element={<SignInSide />}></Route>
-  //         <Route path='/signup' element={<SignUpSide />}></Route>
-  //         <Route path='/services' element={<Services />}></Route>
-  //         <Route path='/payment' element={<Payment />}></Route>
-  //         <Route path='/weather' element={<Weather />}></Route>
-  //         <Route path='/farmer' element={<Farmer />}></Route>
-  //       </Routes>
-  //     </div>
-  //   );
-  // }
+// const App = () => {
+
+//   const [cart, setCart] = useState([]);
+
+//   const handleClick = (item) => {
+//     if (cart.indexOf(item) !== -1) return;
+//     setCart([...cart, item]);
+//     console.log(cart);
+//   };
+
+//   const handleChange = (item, d) => {
+//     const ind = cart.indexOf(item);
+//     const arr = cart;
+//     arr[ind].amount += d;
+//     if (arr[ind].amount === 0) arr[ind].amount = 1;
+//     console.log(arr[ind].amount);
+//     setCart([...arr]);
+//   };
+
+//   useEffect(() => {
+//     console.log("cart change");
+//   }, [cart]);
+
+//   return (
+//     <div>
+//       <Navbar />
+//       <Routes>
+//         <Route path="/" element={<Home />}></Route>
+//         <Route path="/grains" element={<Grains handleClick={handleClick} />}></Route>
+//         <Route path="/vegetables" element={<Vegetables handleClick={handleClick} />}></Route>
+//         <Route path="/fruits" element={<Fruits handleClick={handleClick} />}></Route>
+//         <Route path="/spices" element={<Spices handleClick={handleClick} />}></Route>
+//         <Route path="/nuts" element={<Nuts handleClick={handleClick} />}></Route>
+//         <Route path="/mycart" element={<AddCart cart={cart} setCart={setCart} handleChange={handleChange}/>}></Route>
+//         <Route path="/about" element={<About />}></Route>
+//         <Route path='/consumer' element={<Consumer />}></Route>
+//         <Route path='/signin' element={<SignInSide />}></Route>
+//         <Route path='/signup' element={<SignUpSide />}></Route>
+//         <Route path='/services' element={<Services />}></Route>
+//         <Route path='/payment' element={<Payment />}></Route>
+//         <Route path='/weather' element={<Weather />}></Route>
+//         <Route path='/farmer' element={<Farmer />}></Route>
+//       </Routes>
+//     </div>
+//   );
+// }
