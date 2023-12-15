@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import Home from "./Components/home";
 import Services from "./Components/services";
@@ -16,10 +17,32 @@ import Nuts from "./Components/nuts";
 import AddCart from "./Components/addCart";
 import Weather from "./Components/weather";
 import Farmer from "./Components/farmer";
+=======
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react'
+import Home from './Components/home'
+import Services from './Components/services'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import Navbar from './Components/navbar'
+import Consumer from './Components/consumer'
+import About from './Components/about'
+import SignInSide from './Components/SignInWithSupaBase'
+import SignUpSide from './Components/SignUpWithSupaBase'
+import Payment from './Components/payment'
+import Grains from './Components/grains'
+import Vegetables from './Components/vegetable'
+import Fruits from './Components/fruits'
+import Spices from './Components/spices'
+import Nuts from './Components/nuts'
+import AddCart from './Components/addCart'
+import Weather from './Components/weather'
+import Farmer from './Components/farmer'
+>>>>>>> 65da3f7c4b2d5cfec5f7a233a3b2cd15e8256192
 
 const App = () => {
   const [cart, setCart] = useState([]);
   const handleClick = (item) => {
+<<<<<<< HEAD
     if (cart.indexOf(item) !== -1) return;
     setCart([...cart, item]);
     console.log(cart);
@@ -33,6 +56,21 @@ const App = () => {
     console.log(arr[ind].amount);
     setCart([...arr]);
   };
+=======
+    if (cart.indexOf(item) !== -1) return
+    setCart([...cart, item])
+    console.log(cart)
+  }
+
+  const handleChange = (item, d) => {
+    const ind = cart.indexOf(item)
+    const arr = cart
+    arr[ind].amount += d
+    if (arr[ind].amount === 0) arr[ind].amount = 1
+    console.log(arr[ind].amount)
+    setCart([...arr])
+  }
+>>>>>>> 65da3f7c4b2d5cfec5f7a233a3b2cd15e8256192
 
   useEffect(() => {
     console.log("cart change");
@@ -102,8 +140,19 @@ const App = () => {
           element: <Nuts handleClick={handleClick} />,
         },
         {
+<<<<<<< HEAD
           path: "/mycart",
           element: <AddCart cart={cart} handleChange={handleChange} />,
+=======
+          path: '/mycart',
+          element: (
+            <AddCart
+              cart={cart}
+              setCart={setCart}
+              handleChange={handleChange}
+            />
+          ),
+>>>>>>> 65da3f7c4b2d5cfec5f7a233a3b2cd15e8256192
         },
         {
           path: "/farmer",

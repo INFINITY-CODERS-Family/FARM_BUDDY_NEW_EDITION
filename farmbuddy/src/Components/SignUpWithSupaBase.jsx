@@ -1,100 +1,91 @@
 //eslint-disable-next-line no-unused-vars
-import React,{useState} from'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import MenuItem from '@mui/material/MenuItem';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Paper from '@mui/material/Paper';
-import PocketBase from 'pocketbase';
-import Swal from 'sweetalert2';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
+import TextField from '@mui/material/TextField'
+import Checkbox from '@mui/material/Checkbox'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import MenuItem from '@mui/material/MenuItem'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Paper from '@mui/material/Paper'
+import Swal from 'sweetalert2'
+import { SupaBase } from './createClient'
 
-
-const theme = createTheme();
+const theme = createTheme()
 
 export default function SignUpSide() {
-    const nav = useNavigate();
-    
-    const client = new PocketBase("http://127.0.0.1:8090");
+  // eslint-disable-next-line no-unused-vars
   const initialStateErrors = {
     email: { required: false },
     password: { required: false },
     firstName: { required: false },
-  };
+  }
 
-  const [errors, setErrors] = useState(initialStateErrors);
-
-  const eventLog = () => {
-    nav("/signin");
-  };
+  // const eventLog = () => {
+  //   nav('/signin')
+  // }
 
   const handleSubmit = async () => {
-    const name = input.firstName + input.lastName;
+    const name = input.firstName + input.lastName
 
-    console.log(input);
-    try {
-      const data = {
-        username: name,
-        email: input.email,
-        password: input.password,
-        passwordConfirm: input.passwordConfirm,
-      };
-      const record = await client.collection("users").create(data);
-      if (record) {
-        // eslint-disable-next-line no-unused-vars
-        const uname = data.firstName + " " + data.lastName;
-        // localStorage.setItem("agro-username", uname);
-        // localStorage.setItem("agro-email", user.email);
+    const { data, error } = await SupaBase.auth.signUp({
+      displayName: name,
+      email: input.email,
+      password: input.password,
+      redirectTo: 'http://localhost:5173/signin',
+    })
 
-        Swal.fire({
-          icon: "success",
-          title: "Yayy...",
-          text: "Successfully Signed Up..!",
-          timer: "2000"
-        });
-      }
-      setTimeout(() => {
-        nav("/consumer");
-      }, 2000);
-    } catch (e) {
-      console.log("Please try again later...");
+    if (data) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Yayy...',
+        text: 'Successfully Signed Up! Please verify your email and login to continue.',
+        timer: '2000',
+      })
     }
-  };
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="${url}">Why do I have this issue?</a>',
+        timer: '4000',
+      })
+    }
+  }
 
   const [input, setInputs] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
-  });
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
+  })
   const handleInput = (event) => {
-    setInputs({ ...input, [event.target.name]: event.target.value });
-  };
+    setInputs({ ...input, [event.target.name]: event.target.value })
+  }
 
   const proofs = [
-    "Aadhar Card",
-    "Voter Id",
-    "Driving License",
-    "Passport",
-    "Ration card",
-  ];
+    'Aadhar Card',
+    'Voter Id',
+    'Driving License',
+    'Passport',
+    'Ration card',
+  ]
 
   return (
     <Container
       className="main"
       maxWidth={false}
       maxHeight={false}
-      style={{ backgroundImage: `url("/images/women.jpg")`, height: "100%" }}
+      style={{ backgroundImage: `url("/images/women.jpg")`, height: '100%' }}
     >
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -104,12 +95,12 @@ export default function SignUpSide() {
               <Box
                 sx={{
                   marginTop: 8,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
                 }}
               >
-                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
@@ -131,8 +122,9 @@ export default function SignUpSide() {
                         id="firstName"
                         label="First Name"
                         autoFocus
+                        value={input.firstName}
                         onChange={handleInput}
-                        />
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
@@ -142,8 +134,9 @@ export default function SignUpSide() {
                         label="Last Name"
                         name="lastName"
                         autoComplete="family-name"
+                        value={input.lastName}
                         onChange={handleInput}
-                        />
+                      />
                     </Grid>
                     <Grid item xs={12}>
                       <TextField
@@ -153,6 +146,7 @@ export default function SignUpSide() {
                         label="Email Address"
                         name="email"
                         autoComplete="email"
+                        value={input.email}
                         onChange={handleInput}
                       />
                     </Grid>
@@ -165,6 +159,7 @@ export default function SignUpSide() {
                         type="password"
                         id="password"
                         autoComplete="new-password"
+                        value={input.password}
                         onChange={handleInput}
                       />
                       {/* {input.password} */}
@@ -176,8 +171,9 @@ export default function SignUpSide() {
                         name="passwordConfirm"
                         label="Confirm Password"
                         type="password"
-                        id="password"
+                        id="passwordConfirm"
                         autoComplete="new-password"
+                        value={input.passwordConfirm}
                         onChange={handleInput}
                       />
                       {/* {input.passwordConfirm} */}
@@ -223,7 +219,7 @@ export default function SignUpSide() {
                         autoComplete="family-name"
                       />
                     </Grid>
-                    
+
                     {/* <Grid item xs={12}>
                       <Stack direction="row" alignItems="center" spacing={2}>
                         <span>ID Proof copy</span>
@@ -272,5 +268,5 @@ export default function SignUpSide() {
         </Container>
       </ThemeProvider>
     </Container>
-  );
-}                                           
+  )
+}
