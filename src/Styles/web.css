@@ -10,7 +10,7 @@
     }
 
     .main {
-        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%),
+        background-image: linear-gradient(to top, #00000080, #00000080),
             url('/images/farmbuddy_bg.jpeg');
         background-size: cover;
         height: 104.3vh;
