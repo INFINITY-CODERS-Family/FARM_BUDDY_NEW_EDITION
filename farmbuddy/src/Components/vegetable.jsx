@@ -1,5 +1,4 @@
 import React from 'react'
-import Prod from '../vprod.json'
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
@@ -10,13 +9,26 @@ import Typography from '@mui/material/Typography'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Swal from 'sweetalert2'
+import PropTypes from 'prop-types'
+import { SupaBase } from './createClient'
 
 const Vegetables = ({ handleClick }) => {
-  const style = {
-    fontSize: '20px',
-  }
 
   const [color, setColor] = React.useState({})
+  const [data, setData] = React.useState([])
+
+  const getData = async () => {
+    const { data: Vegetables, error } = await SupaBase.from('Vegetables').select()
+    if (error) {
+      console.log(error)
+    } else {
+      setData(Vegetables)
+    }
+  }
+
+  React.useEffect(() => {
+    getData()
+  }, [])
 
   return (
     <Container maxWidth={false} maxHeight={false} >
@@ -31,9 +43,10 @@ const Vegetables = ({ handleClick }) => {
           flexWrap: 'wrap',
         }}
       >
-        {Prod.map((ele) => {
+        {data.map((ele) => {
           return (
             <Card
+              key={ele.id}
               sx={{
                 maxWidth: 345,
                 marginBlock: 2,
@@ -44,7 +57,7 @@ const Vegetables = ({ handleClick }) => {
               <CardMedia
                 component="img"
                 height="194"
-                image={ele.image}
+                image={ele.img_url}
                 alt={ele.name}
               />
               <CardContent>
@@ -96,5 +109,7 @@ const Vegetables = ({ handleClick }) => {
     </Container>
   )
 }
-
+Vegetables.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+}
 export default Vegetables;

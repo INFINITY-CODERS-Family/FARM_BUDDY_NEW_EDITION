@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -20,7 +21,7 @@ const AddCart = ({ cart, setCart, handleChange }) => {
 
   const [stock, setStock] = useState(1);
 
-  const stockReducer = (event) => {
+  const stockReducer = () => {
     if(stock  <  1){
       setStock(1);
     }
@@ -51,6 +52,7 @@ const AddCart = ({ cart, setCart, handleChange }) => {
   useEffect(() => {
     handlePrice();
     stockReducer();
+    console.log(cart);
   });
 
   const eventTrap = () => {
@@ -105,7 +107,7 @@ const AddCart = ({ cart, setCart, handleChange }) => {
                     <CardMedia
                       component="img"
                       height="194"
-                      image={ele.image}
+                      image={ele.img_url}
                       alt={ele.name}
                     />
                     <CardActions>

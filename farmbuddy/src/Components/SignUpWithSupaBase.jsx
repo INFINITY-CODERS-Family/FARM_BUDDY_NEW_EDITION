@@ -33,10 +33,10 @@ export default function SignUpSide() {
   // }
 
   const handleSubmit = async () => {
+    // eslint-disable-next-line no-unused-vars
     const name = input.firstName + input.lastName
 
     const { data, error } = await SupaBase.auth.signUp({
-      displayName: name,
       email: input.email,
       password: input.password,
       redirectTo: 'http://localhost:5173/signin',

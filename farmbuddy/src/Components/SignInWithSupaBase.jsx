@@ -34,16 +34,6 @@ export default function SignInSide() {
       password: details.password,
     });
     console.error(error);
-    if (data) {
-      Swal.fire({
-        icon: "success",
-        title: "Yayy...",
-        text: "Successfully Signed In!",
-        timer: "2000",
-      }).then(() => {
-        navigate("/dashboard");
-      });
-    }
     if (error) {
       Swal.fire({
         icon: "error",
@@ -52,6 +42,17 @@ export default function SignInSide() {
         footer: '<a href="${url}">Why do I have this issue?</a>',
         timer: "4000",
       });
+    }
+    else if (data) {
+      Swal.fire({
+        icon: "success",
+        title: "Yayy...",
+        text: "Successfully Signed In!",
+        timer: "2000",
+      })
+      setTimeout(() => {
+        navigate("/consumer");
+      }, 2000);
     }
   };
 
