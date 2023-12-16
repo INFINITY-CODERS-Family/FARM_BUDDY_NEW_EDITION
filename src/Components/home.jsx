@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box, Container, Grid, ListItem, ListItemButton ,Typography, colors, List, ListItemText, autocompleteClasses, ListItemAvatar } from '@mui/material';
 import { Link } from 'react-router-dom';
-import '../Styles/web.css';
-import Navbar from './navbar';
+import '../Styles/web.css';;
 
 const Home = () => {
     // function googleTranslateElementInit() {

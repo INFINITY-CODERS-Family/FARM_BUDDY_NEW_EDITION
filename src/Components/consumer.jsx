@@ -65,7 +65,7 @@ const Consumer = () => {
 
     return (
 
-        <Container className="main" maxWidth={false} style={{ backgroundImage: `url("/images/consumerback.jpg")`, height:"auto", marginTop:"4rem"}}>
+        <Container className="main" maxWidth={false} style={{ backgroundImage: `url("/images/consumerback.jpg")`, height:"auto", }}>
             <Box className="ma" display="flex"
                 justifyContent="center"
                 flexDirection="column"
