@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Box, Container, Grid, ListItem, ListItemButton ,Typography, colors, List, ListItemText, autocompleteClasses, ListItemAvatar } from '@mui/material';
 import { Link } from 'react-router-dom';
-import '../Styles/web.css';;
+import '../Styles/web.css';
 
 const Home = () => {
     // function googleTranslateElementInit() {
@@ -60,12 +61,12 @@ const Home = () => {
                     JOIN US
                   </button>
                 </Link>
-                <Link to="/farmer">
+                <Link to="/signin">
                   <button
-                    className="cn"
+                    className="cna"
                     style={{ width: '160px', height: '40px' }}
                   >
-                    Farmer
+                    LOGIN
                   </button>
                 </Link>
               </Box>
@@ -74,7 +75,13 @@ const Home = () => {
           <Grid item xs={12} sm={4} md={4} lg={4} xl={3}>
             <Container
               className="feature"
-              style={{ display: 'flex', flexDirection: 'column' }}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                borderRadius: '10px',
+                py: 1,
+                px: 2,
+              }}
             >
               <Box style={{ display: 'flex', flexDirection: 'column' }}>
                 <Typography
@@ -84,20 +91,52 @@ const Home = () => {
                 >
                   Features
                 </Typography>
-                
-                  <List style={{display: "flex", flexDirection: "column"}}> 
-                    <ListItem disablePadding>
-                      <ListItemButton component="a" href="./weather">
+
+                <List style={{ display: 'flex', flexDirection: 'column' }}>
+                  <ListItem disablePadding>
+                    <Link to="/weather">
+                      <ListItemButton
+                        style={{
+                          textDecoration: 'none',
+                          color: 'white',
+                          '&:hover': {
+                            color: 'black',
+                          },
+                        }}
+                      >
                         <ListItemText primary="Know Your Weather" />
                       </ListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding>
+                    </Link>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <Link
+                      to="/services"
+                      style={{
+                        textDecoration: 'none',
+                        color: 'white',
+                        '&:hover': {
+                          color: '#cccccc',
+                        },
+                      }}
+                    >
                       <ListItemButton>
-                        <ListItemText primary="Drafts" />
+                        <ListItemText primary="Loans and Subsidies" />
                       </ListItemButton>
-                    </ListItem>
-                  </List>
-                
+                    </Link>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      style={{
+                        color: 'white',
+                        '&:hover': {
+                          color: '#cccccc',
+                        },
+                      }}
+                    >
+                      <ListItemText primary="Price Calculator" />
+                    </ListItemButton>
+                  </ListItem>
+                </List>
               </Box>
             </Container>
           </Grid>
@@ -107,9 +146,3 @@ const Home = () => {
 }
 
 export default Home;
-            // <div className="content">
-            //     <h1 style={{padding:100}}>WELCOME YOU!!<br /><span>GET CONNECTED</span> <br />
-            //         <q>விதைப்பவனே விலையை தகுதியிடுபவன்</q></h1>
-            //     <p className="par">This web act as a bridge for both farmers and consumers.<br />We sure that this app must be beneficial one.<br />All other details were in about page.</p>
-            //     <Link to='/signup'><button className="cn">JOIN US</button></Link>
-            // </div>

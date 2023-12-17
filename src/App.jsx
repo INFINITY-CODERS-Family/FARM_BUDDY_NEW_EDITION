@@ -19,6 +19,7 @@ import Weather from "./Components/weather";
 import Farmer from "./Components/farmer";
 import ForgetPassword from "./Components/forgetPassword";
 import UpdatePassword from "./Components/updatePassword";
+import Translate from "./Components/translate";
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -46,7 +47,9 @@ const App = () => {
       path: "/",
       element: (
         <>
-          <Navbar />
+          <Navbar>
+            <Translate />
+          </Navbar>
           <Outlet />
         </>
       ),
@@ -105,30 +108,32 @@ const App = () => {
           path: "/nuts",
           element: <Nuts handleClick={handleClick} />,
         },
-
         {
           path: "/mycart",
-          element: (
+          element: 
             <AddCart
               cart={cart}
               setCart={setCart}
               handleChange={handleChange}
             />
-          ),
         },
         {
           path: "/farmer",
           element: <Farmer />,
         },
+        {
+          path: "/translate",
+          element: <Translate />,
+        },
+        {
+          path: "/forgetPassword",
+          element: <ForgetPassword />,
+        },
+        {
+          path: "/updatePassword",
+          element: <UpdatePassword />,
+        },
       ],
-    },
-    {
-      path: "/forgetPassword",
-      element: <ForgetPassword />,
-    },
-    {
-      path: "/updatePassword",
-      element: <UpdatePassword />,
     },
   ]);
 

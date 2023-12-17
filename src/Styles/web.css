@@ -5,7 +5,7 @@
     }
     
     .feature{
-        background-color: #0fe76d70;
+        background-color: #0fe76d73;
         /* min-height: 25vh; */
     }
 
@@ -13,7 +13,7 @@
         background-image: linear-gradient(to top, #00000080, #00000080),
             url('/images/farmbuddy_bg.jpeg');
         background-size: cover;
-        height: 104.3vh;
+        height: 104.2vh;
     }
 
     .icon{
@@ -145,7 +145,7 @@
      /* width: 160px;
      height: 40px; */
      background: #41fd02;
-     border: none;
+     border-color: #00000000;
      margin-bottom: 10px;
      margin-left: 20px;
      font-size: 18px;
@@ -164,6 +164,32 @@
     
     .cn:hover{
     background-color: #fff;
+    }
+    .cna{
+     /* width: 160px;
+     height: 40px; */
+    border-color: #41fd02;
+    background-color: #00000000;
+    color: #fff;
+     margin-bottom: 10px;
+     margin-left: 20px;
+     font-size: 18px;
+     border-radius: 10px;
+     cursor: pointer;
+     transition: .4s ease;
+    
+    }
+    
+    .cna a{
+     text-decoration: none;
+     font-weight: bolder;
+     color: rgb(247, 8, 116);
+    transition: .3s ease;
+    }
+    
+    .cna:hover{
+    background-color: #fff;
+    color: #000;
     }
     
     .content span{

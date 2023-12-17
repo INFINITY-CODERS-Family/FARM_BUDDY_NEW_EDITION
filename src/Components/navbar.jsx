@@ -16,7 +16,8 @@ import { Link } from 'react-router-dom'
 import AgricultureIcon from '@mui/icons-material/Agriculture'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import '../Styles/navbar.css'
-import Translate from './translate'
+// import Translate from './translate'
+import PropTypes from 'prop-types'
 import logo from '/images/logo-white-transparent.png'
 
 const theme = createTheme({
@@ -32,12 +33,11 @@ const theme = createTheme({
   },
 })
 
-const Navbar = () => {
+const Navbar = ({children}) => {
   const pages = [
     { name: 'CONSUMER', path: '/consumer' },
     { name: 'SERVICES', path: '/services' },
     { name: 'ABOUT', path: '/about' },
-    { name: 'LOGIN', path: '/signin' },
     { name: 'FARMER', path: '/farmer' },
   ]
   const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
@@ -208,7 +208,8 @@ const Navbar = () => {
                     display: 'block',
                   }}
                 >
-                  <Translate />
+                  {/* <Translate /> */}
+                  {children}
                 </Container>
                 <div
                   style={{
@@ -263,6 +264,10 @@ const Navbar = () => {
       </Box>
     </ThemeProvider>
   )
+}
+
+Navbar.propTypes = {
+  children: PropTypes.element.isRequired, // if you expect a single child of any type
 }
 
 export default Navbar
