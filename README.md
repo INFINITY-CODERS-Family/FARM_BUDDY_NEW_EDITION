@@ -22,7 +22,7 @@
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/G-Pavithran-dev/FARMBUDDY_NEW_EDITION.git
+   git clone https://github.com/INFINITY-CODERS-Family/FARM_BUDDY_NEW_EDITION.git
    ```
    
 2. **Install dependencies:**
